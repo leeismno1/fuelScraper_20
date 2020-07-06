@@ -173,7 +173,7 @@ print(os.getcwd())
 # print(fuel_html)
 
 # Opens and creates a file named fuel_report.html with write access.
-fuel_file = open('Desktop/fuel_report.html', 'w')
+fuel_file = open('fuel_report.html', 'w')
 
 # Writes the the data from fuel_data_html into the fuel_report.html file.
 fuel_file.write(list_fuel)
