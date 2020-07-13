@@ -93,7 +93,7 @@ def fuel_day(which_fuel, which_region, which_day):
     # print(which_fuel, which_day, which_region)
     # pprint(feed, indent=4)
 
-# Create a list of dictionaries
+    # Create a list of dictionaries
     fuel_output = []
 
     for entry in feed["entries"]:
@@ -104,8 +104,8 @@ def fuel_day(which_fuel, which_region, which_day):
         new_dict["Location"] = entry["location"]
         new_dict["Day"] = which_day
         fuel_output.append(new_dict)
+        
     return fuel_output
-    # fuel_output.append(entry["price"])
 
 # Sorting by price
 def by_price(item):
@@ -120,12 +120,31 @@ def  fuel_table_data():
     print(sorted_fuel_output)
     return sorted_fuel_output
 
+def create_fuel_table():
+
+    fuel_table_header = """
+		<tr>
+			<th> Price </th><th> Brand </th><th> Address </th><th> Location </th><th> Day </th>
+		</th>"""
+
+    fuel_data_row_string = ""
+
+    for value in data_for_fuel_table :
+        fuel_data_row_string += """
+            <tr>
+                <td>{Price} </td><td>{Brand} </td><td>{Address} </td><td>{Location} </td><td>{Day}</td>
+            </tr>
+        """.format(**value)
+    fuel_html = "<html><title>Fuel Report</title><body><table><tbody>" + fuel_table_header + fuel_data_row_string + "</tbody></table></body></html>"
+
+    #print(fuel_html)
+    return fuel_html
 
 # Test print of fuel dictionaries
 # print(1, fuel_today, TODAY)
 # print(fuel_tomorrow)
 
-fuel_output = fuel_table_data()
+
 
 
 
@@ -141,26 +160,17 @@ fuel_output = fuel_table_data()
 of dictionaries and adds the value for keys price, brand, address and day into a row which is contained in a string"""
 
 
-def create_fuel_table():
 
-    fuel_table_header = """
-		<tr>
-			<th> Price </th><th> Brand </th><th> Address </th><th> Location </th><th> Day </th>
-		</th>"""
 
-    fuel_data_row_string = ""
+# fuel_output_table = fuel_table_data()
 
-    for value in fuel_output:
-        fuel_data_row_string += """
-            <tr>
-                <td>{Price} </td><td>{Brand} </td><td>{Address} </td><td>{Location} </td><td>{Day}</td>
-            </tr>
-        """.format(**value)
-    fuel_html = "<html><title>Fuel Report</title><body><tbody><table>" + fuel_table_header + fuel_data_row_string + "</table></tbody></body></html>"
+data_for_fuel_table = fuel_table_data()
 
-    return fuel_html
-    
 list_fuel = create_fuel_table()
+
+
+
+
 
 # print(list_fuel)
 
@@ -176,11 +186,12 @@ list_fuel = create_fuel_table()
 # Printing output of fuel_html
 # print(fuel_html)
 
+# Create HTML file
 # Opens and creates a file named fuel_report.html with write access.
-# fuel_file = open('fuel_report.html', 'w')
+#fuel_file = open('fuel_report.html', 'w')
 
 # Writes the the data from fuel_data_html into the fuel_report.html file.
-# fuel_file.write(list_fuel)
+#fuel_file.write(list_fuel)
 
 # Closes fuel_report.html.
 # fuel_file.close()

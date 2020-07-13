@@ -1,11 +1,11 @@
 from flask import Flask, render_template
-from fuel_scraper_june20 import fuel_table_data
+# from fuel_scraper_june20 import fuel_table_data
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello world'
+    return 'Test'
 
 @app.route('/Hello/')
 def index():
