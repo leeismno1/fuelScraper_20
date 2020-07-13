@@ -1,13 +1,13 @@
 from flask import Flask, render_template
-import fuel_scraper_june20
+from fuel_scraper_june20 import fuel_table_data
 
 app = Flask(__name__)
 
-@app.route('/hello/')
-def hello():
-    return render_template('fuel_report.html')
-
 @app.route('/')
+def index():
+    return 'Hello world'
+
+@app.route('/Hello/')
 def index():
     return 'Hello world'
 

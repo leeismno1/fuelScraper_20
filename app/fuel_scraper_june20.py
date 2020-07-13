@@ -66,9 +66,9 @@ YORK = 56
 
 # Days
 
-TODAY = 'today'
-TOMORROW = 'tomorrow'
-YESTERDAY = 'yesterday'
+TODAY = 'Today'
+TOMORROW = 'Tomorrow'
+YESTERDAY = 'Yesterday'
 
 # Fuel Types
 
@@ -113,10 +113,11 @@ def by_price(item):
 
 def  fuel_table_data():
 
-    fuel_today = fuel_day(UNLEADED_PETROL, NORTH_OF_RIVER, TODAY)
-    fuel_tomorrow = fuel_day(UNLEADED_PETROL, NORTH_OF_RIVER, TOMORROW)
+    fuel_today = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TODAY)
+    fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
     all_fuel = fuel_today+fuel_tomorrow
     sorted_fuel_output = sorted(all_fuel, key=by_price)
+    print(sorted_fuel_output)
     return sorted_fuel_output
 
 
@@ -125,6 +126,7 @@ def  fuel_table_data():
 # print(fuel_tomorrow)
 
 fuel_output = fuel_table_data()
+
 
 
 """def fuel_string_names():
@@ -160,7 +162,9 @@ def create_fuel_table():
     
 list_fuel = create_fuel_table()
 
-print(os.getcwd())
+# print(list_fuel)
+
+# print(os.getcwd())
 
 # print(list_fuel)
 
@@ -173,13 +177,13 @@ print(os.getcwd())
 # print(fuel_html)
 
 # Opens and creates a file named fuel_report.html with write access.
-fuel_file = open('fuel_report.html', 'w')
+# fuel_file = open('fuel_report.html', 'w')
 
 # Writes the the data from fuel_data_html into the fuel_report.html file.
-fuel_file.write(list_fuel)
+# fuel_file.write(list_fuel)
 
 # Closes fuel_report.html.
-fuel_file.close()
+# fuel_file.close()
 
 # print("Run succesfully!")
 # Get all regions as variables so they can be used by the function def fuel_day(which_day, which_fuel) Add the Region, Fuel type (needs to be added to function to be used) and day. Use a settings.py file (CONSTANCE?)
