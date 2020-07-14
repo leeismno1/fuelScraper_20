@@ -117,10 +117,10 @@ def  fuel_table_data():
     fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
     all_fuel = fuel_today+fuel_tomorrow
     sorted_fuel_output = sorted(all_fuel, key=by_price)
-    print(sorted_fuel_output)
+    # print(sorted_fuel_output)
     return sorted_fuel_output
 
-def create_fuel_table():
+def create_fuel_table(data):
 
     fuel_table_header = """
 		<tr>
@@ -129,7 +129,7 @@ def create_fuel_table():
 
     fuel_data_row_string = ""
 
-    for value in data_for_fuel_table :
+    for value in data:
         fuel_data_row_string += """
             <tr>
                 <td>{Price} </td><td>{Brand} </td><td>{Address} </td><td>{Location} </td><td>{Day}</td>
@@ -164,15 +164,12 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 
 # fuel_output_table = fuel_table_data()
 
-data_for_fuel_table = fuel_table_data()
+# data_for_fuel_table = fuel_table_data()
 
-list_fuel = create_fuel_table()
-
-
-
-
+list_fuel = create_fuel_table(fuel_table_data())
 
 # print(list_fuel)
+
 
 # print(os.getcwd())
 
