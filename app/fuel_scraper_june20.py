@@ -111,11 +111,11 @@ def fuel_day(which_fuel, which_region, which_day):
 def by_price(item):
     return item['Price']
 
-def  fuel_table_data():
+def  fuel_table_data(fuel, location, day):
 
-    fuel_today = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TODAY)
-    fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
-    all_fuel = fuel_today+fuel_tomorrow
+    fuel_today = fuel_day(fuel, location, day)
+    # fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
+    all_fuel = fuel_today
     sorted_fuel_output = sorted(all_fuel, key=by_price)
     # print(sorted_fuel_output)
     return sorted_fuel_output
@@ -165,10 +165,10 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 # fuel_output_table = fuel_table_data()
 
 # data_for_fuel_table = fuel_table_data()
+fuel_data = fuel_table_data(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
+list_fuel = create_fuel_table(fuel_data)
 
-list_fuel = create_fuel_table(fuel_table_data())
-
-# print(list_fuel)
+print(list_fuel)
 
 
 # print(os.getcwd())
