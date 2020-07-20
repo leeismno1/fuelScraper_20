@@ -168,7 +168,7 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 fuel_data = fuel_table_data(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
 list_fuel = create_fuel_table(fuel_data)
 
-print(list_fuel)
+# print(list_fuel)
 
 
 # print(os.getcwd())
