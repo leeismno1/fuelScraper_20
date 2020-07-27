@@ -153,6 +153,9 @@ def render_form():
         
         <label>Day</label><br>
         <input type="text" name="day"><br>
+
+        <label>Fuel Type</label><br>
+        <input type="text" name="fuel"><br>
         <input type="submit" value="Submit">
     </form>'''
 
@@ -188,7 +191,7 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 # data_for_fuel_table = fuel_table_data()
 # fuel_data = fuel_table_data(PREMIUM_UNLEADED, NORTH_OF_RIVER, TODAY)
 # print("fuel_data", fuel_data)
-print(render_form())
+# print(render_form())
 # list_fuel = create_fuel_table(fuel_data)
 
 # print(list_fuel)
