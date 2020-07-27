@@ -84,12 +84,13 @@ fuel_types = [UNLEADED_PETROL, PREMIUM_UNLEADED, DIESEL, LPG, RON_98, E85, BRAND
 
 def fuel_day(which_fuel, which_region, which_day):
 
-    if which_day == 'today':
-        response = requests.get('http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product={}&Region={}&Day=today'.format(which_fuel, which_region))
-    else:
-        response = requests.get('http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product={}&Region={}&Day=tomorrow'.format(which_fuel, which_region))
+    response = requests.get('http://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS?Product={}&Region={}&Day={}'.format(which_fuel, which_region, which_day))
+    # print("today", response)
+   
+    
 
     feed = feedparser.parse(response.content)
+    # print("what is running", feed, which_day, which_fuel,which_day)
     # print(which_fuel, which_day, which_region)
     # pprint(feed, indent=4)
 
@@ -104,7 +105,7 @@ def fuel_day(which_fuel, which_region, which_day):
         new_dict["Location"] = entry["location"]
         new_dict["Day"] = which_day
         fuel_output.append(new_dict)
-        
+   
     return fuel_output
 
 # Sorting by price
@@ -117,7 +118,6 @@ def  fuel_table_data(fuel, location, day):
     # fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
     all_fuel = fuel_today
     sorted_fuel_output = sorted(all_fuel, key=by_price)
-    # print(sorted_fuel_output)
     return sorted_fuel_output
 
 def create_fuel_table(data):
@@ -135,16 +135,37 @@ def create_fuel_table(data):
                 <td>{Price} </td><td>{Brand} </td><td>{Address} </td><td>{Location} </td><td>{Day}</td>
             </tr>
         """.format(**value)
-    fuel_html = "<html><title>Fuel Report</title><body><table><tbody>" + fuel_table_header + fuel_data_row_string + "</tbody></table></body></html>"
+    fuel_html = "<table><tbody>" + fuel_table_header + fuel_data_row_string + "</tbody></table>"
 
     #print(fuel_html)
     return fuel_html
+
+def render_form():
+    return '''<form>
+        <label>Brand</label><br>
+        <input type="text" name="brand"><br>
+        
+        <label>Address</label><br>
+        <input type="text" name="address"><br>
+        
+        <label>Location</label><br>
+        <input type="text" name="location"><br>
+        
+        <label>Day</label><br>
+        <input type="text" name="day"><br>
+        <input type="submit" value="Submit">
+    </form>'''
+
+
+
+    
+
 
 # Test print of fuel dictionaries
 # print(1, fuel_today, TODAY)
 # print(fuel_tomorrow)
 
-
+# remove /table></body></html render form in one function and table data in another
 
 
 
@@ -165,8 +186,10 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 # fuel_output_table = fuel_table_data()
 
 # data_for_fuel_table = fuel_table_data()
-fuel_data = fuel_table_data(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
-list_fuel = create_fuel_table(fuel_data)
+# fuel_data = fuel_table_data(PREMIUM_UNLEADED, NORTH_OF_RIVER, TODAY)
+# print("fuel_data", fuel_data)
+print(render_form())
+# list_fuel = create_fuel_table(fuel_data)
 
 # print(list_fuel)
 
@@ -201,3 +224,6 @@ list_fuel = create_fuel_table(fuel_data)
 # Read up on list comprehension
 
 # Read up on Python Context Manager
+
+# forms in HTML
+
