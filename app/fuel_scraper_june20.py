@@ -5,64 +5,64 @@ import os
 
 # Region Codes
 
-NORTH_OF_RIVER = 25
-SOUTH_OF_RIVER = 26 
-EAST_HILLS = 27
-ALBANY = 15 
-AUGUSTA_MARGARET_RIVER = 28  
-BRIDGETOWN_GREENBUSHES = 30 
-BOULDER = 1  
-BROOME = 2 
-BUNBURY = 16 
-BUSSELTON_TOWNSITE = 3 
-BUSSELTON_SHIRE = 29 
-CAPEL = 19 
-CARNARVON = 4 
-CATABY = 33 
-COLLIE = 5
-COOLGARDIE = 34 
-CUNDERDIN = 35
-DONNYBROOK_BALINGUP = 31  
-DALWALLINU = 36 
-DAMPIER = 6 
-DARDANUP = 20 
-DENMARK = 37 
-DERBY = 38 
-DONGARA = 39 
-ESPERANCE = 7 
-EXMOUTH = 40 
-FITZROY_CROSSING = 41 
-GERALDTON = 17 
-GREENOUGH = 21 
-HARVEY = 22 
-JURIEN = 42 
-KALGOORLIE = 8 
-KAMBALDA = 43 
-KARRATHA = 9
-KELLERBERRIN = 44 
-KOJONUP = 45 
-KUNUNURRA = 10 
-MANDURAH = 18 
-MANJIMUP = 32 
-MECKERING = 58 
-MEEKATHARRA = 46 
-MOORA = 47 
-MT_BARKER = 48 
-MURRAY = 23 
-NARROGIN = 11 
-NEWMAN = 49 
-NORSEMAN = 50 
-NORTHAM = 12 
-PORT_HEDLAND = 13 
-RAVENSTHORPE = 51 
-REGANS_FORD = 57 
-SOUTH_HEDLAND = 14 
-TAMMIN = 53 
-WAROONA = 24 
-WILLIAMS = 54 
-WUBIN = 55 
-WUNDOWIE = 59 
-YORK = 56 
+regions = {'NORTH_OF_RIVER' : 25,
+'SOUTH_OF_RIVER' : 26,
+'EAST_HILLS' : 27,
+'ALBANY' : 15 ,
+'AUGUSTA_MARGARET_RIVER' : 28,  
+'BRIDGETOWN_GREENBUSHES' : 30 ,
+'BOULDER' : 1,  
+'BROOME' : 2, 
+'BUNBURY' : 16, 
+'BUSSELTON_TOWNSITE' : 3, 
+'BUSSELTON_SHIRE' : 29, 
+'CAPEL' : 19, 
+'CARNARVON' : 4, 
+'CATABY' : 33, 
+'COLLIE' : 5,
+'COOLGARDIE' : 34, 
+'CUNDERDIN' : 35,
+'DONNYBROOK_BALINGUP' : 31,  
+'DALWALLINU' : 36, 
+'DAMPIER' : 6, 
+'DARDANUP' : 20, 
+'DENMARK' : 37, 
+'DERBY' : 38, 
+'DONGARA' : 39, 
+'ESPERANCE' : 7, 
+'EXMOUTH' : 40, 
+'FITZROY_CROSSING' : 41, 
+'GERALDTON' : 17, 
+'GREENOUGH' : 21, 
+'HARVEY' : 22, 
+'JURIEN' : 42, 
+'KALGOORLIE' : 8, 
+'KAMBALDA' : 43, 
+'KARRATHA' : 9,
+'KELLERBERRIN' : 44, 
+'KOJONUP' : 45, 
+'KUNUNURRA' : 10, 
+'MANDURAH' : 18, 
+'MANJIMUP' : 32, 
+'MECKERING' : 58, 
+'MEEKATHARRA' : 46, 
+'MOORA' : 47, 
+'MT_BARKER' : 48, 
+'MURRAY' : 23, 
+'NARROGIN' : 11, 
+'NEWMAN' : 49, 
+'NORSEMAN' : 50, 
+'NORTHAM' : 12, 
+'PORT_HEDLAND' : 13, 
+'RAVENSTHORPE' : 51, 
+'REGANS_FORD' : 57, 
+'SOUTH_HEDLAND' : 14, 
+'TAMMIN' : 53, 
+'WAROONA' : 24, 
+'WILLIAMS' : 54, 
+'WUBIN' : 55, 
+'WUNDOWIE' : 59, 
+'YORK' : 56} 
 
 # Days
 
@@ -118,6 +118,7 @@ def  fuel_table_data(fuel, location, day):
     # fuel_tomorrow = fuel_day(PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW)
     all_fuel = fuel_today
     sorted_fuel_output = sorted(all_fuel, key=by_price)
+    print(all_fuel)
     return sorted_fuel_output
 
 def create_fuel_table(data):
@@ -141,29 +142,43 @@ def create_fuel_table(data):
     return fuel_html
 
 def render_form():
-    return '''<form>
-        <label>Brand</label><br>
-        <input type="text" name="brand"><br>
-        
-        <label>Address</label><br>
-        <input type="text" name="address"><br>
-        
-        <label>Location</label><br>
-        <input type="text" name="location"><br>
+    location_select = ''
+    select_head = '<select name="Location" id="Location">'
+    select_box = ''
+    select_end = '</select>'
+    for v, k in regions.items():
+        select_box += '<option value="{}">{}</option>'.format(k, v)
+            
+    location_select = select_head + select_box + select_end
+
+    form_labels = '''
         
         <label>Day</label><br>
         <input type="text" name="day"><br>
 
-        <label>Fuel Type</label><br>
-        <input type="text" name="fuel"><br>
-        <input type="submit" value="Submit">
-    </form>'''
+        <select name="Fuel Type" id="fuel type">
+        <option value="1">Unleaded Petrol</option>
+        <option value="2">Premium Unleaded</option>
+        <option value="4">Diesel</option>
+        <option value="5">LPG</option>
+        <option value="6">RON 98</option>
+        <option value="10">E85</option>
+        <option value="11">Diesel Brand</option>
+        </select>
+
+        '''
+
+    submit_button = '<input type="submit" value="Submit">'
+
+    rendered_form = '<form>' + location_select + form_labels + submit_button + '</form>'
+
+    return rendered_form
 
 
+    # location select
 
+    # return form_labels + 
     
-
-
 # Test print of fuel dictionaries
 # print(1, fuel_today, TODAY)
 # print(fuel_tomorrow)
@@ -172,16 +187,15 @@ def render_form():
 
 
 
-"""def fuel_string_names():
-    if"""
+# def fuel_string_names():
+#     if"""
 
 
 
 # Printing output of sorted_fuel_output
 # pprint(sorted_fuel_output, indent =4)
 
-""" Empty string fuel_data_row_string is created, a for loop iterates over fuel_data which contains the list 
-of dictionaries and adds the value for keys price, brand, address and day into a row which is contained in a string"""
+
 
 
 
@@ -227,6 +241,3 @@ of dictionaries and adds the value for keys price, brand, address and day into a
 # Read up on list comprehension
 
 # Read up on Python Context Manager
-
-# forms in HTML
-
