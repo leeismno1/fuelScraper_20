@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from fuel_scraper_june20 import create_fuel_table
-from fuel_scraper_june20 import fuel_table_data, render_form
+from app.fuel_scraper_june20 import create_fuel_table
+from app.fuel_scraper_june20 import fuel_table_data, render_form
 # from fuel_scraper_june20 import PREMIUM_UNLEADED, NORTH_OF_RIVER, TOMORROW, TODAY, YESTERDAY
 
 app = Flask(__name__)
