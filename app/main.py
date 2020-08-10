@@ -7,12 +7,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    day_field = request.args.get('day')
+    day_field = request.args.get('Day')
     location_field = request.args.get('Location')
     # fuel_field = request.args.get('fuel')
     fuel_select = request.args.get('Fuel Type')
     fuel_data = fuel_table_data(fuel_select, location_field, day_field)
-    list_fuel = render_form() + create_fuel_table(fuel_data) + str(location_field) + day_field + fuel_select
+    list_fuel = render_form() + create_fuel_table(fuel_data) # + str(location_field) + day_field + fuel_select
     return list_fuel
 
    

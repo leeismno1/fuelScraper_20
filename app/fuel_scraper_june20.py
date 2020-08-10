@@ -153,9 +153,14 @@ def render_form():
 
     form_labels = '''
         
-        <label>Day</label><br>
-        <input type="text" name="day"><br>
-
+        <label>Day: </label>
+        <select name="Day" id="day">
+        <option value="Today">Today</option>
+        <option value="Tomorrow">Tomorrow</option>
+        <option value="Yesterday">Yesterday</option>
+        </select>
+        <br>
+        <label>Fuel Type: </label>
         <select name="Fuel Type" id="fuel type">
         <option value="1">Unleaded Petrol</option>
         <option value="2">Premium Unleaded</option>
@@ -164,13 +169,14 @@ def render_form():
         <option value="6">RON 98</option>
         <option value="10">E85</option>
         <option value="11">Diesel Brand</option>
+
         </select>
 
         '''
 
-    submit_button = '<input type="submit" value="Submit">'
+    submit_button = '<br><input type="submit" value="Submit">'
 
-    rendered_form = '<form>' + location_select + form_labels + submit_button + '</form>'
+    rendered_form = '<form>' + 'Location: ' + location_select + '<br>'+ form_labels + submit_button + '</form>'
 
     return rendered_form
 
